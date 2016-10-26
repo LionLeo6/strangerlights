@@ -129,7 +129,7 @@ def blinkWords(strip, word):
   #otherwise, stall
   for character in word:
     if character in ALPHABET:
-      strip.setPixelColor(ALPHABET.index(character)+LIGHTSHIFT, RED)
+      strip.setPixelColor(ALPHABET.index(character)+LIGHTSHIFT, COLORS[ALPHABET.index(character)])
       strip.show()
       time.sleep(1)
       strip.setPixelColor(ALPHABET.index(character)+LIGHTSHIFT, OFF)
@@ -207,7 +207,7 @@ def runBlink(strip):
     #turn on all three letters at the same time
     for character in word:
       if character in ALPHABET:
-        strip.setPixelColor(ALPHABET.index(character)+LIGHTSHIFT, RED)
+        strip.setPixelColor(ALPHABET.index(character)+LIGHTSHIFT, COLORS[ALPHABET.index(character)])
     strip.show()
 
     time.sleep(random.randint(15,100)/1000.0)
