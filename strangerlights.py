@@ -95,6 +95,29 @@ def turnOffLights(strip):
     strip.show()
     time.sleep(random.randint(10,80)/1000.0)
 
+def turnOnLights(strip):
+  """
+  turns on all the lights
+
+  inputs: 
+    strip = color strip instance to action against
+
+  outputs:
+    <none>
+  """
+  #create a list of jumbled ints
+  s = list(range(len(ALPHABET)))
+  random.shuffle(s)
+
+  #turn on each light in a semi-random fasion
+  colorLen = len(COLORS)
+  #Initialize all LEDs
+  for i in range(len(ALPHABET)):
+    strip.setPixelColor(s[i]+LIGHTSHIFT, COLORS[s[i]%colorLen])
+    strip.show()
+    time.sleep(random.randint(10,80)/1000.0)
+
+
 def blinkWords(strip, word):
 
   turnOffLights(strip)
@@ -211,19 +234,18 @@ def runBlink(strip):
 
     time.sleep(random.randint(50,150)/1000.0)
 
-# Main program logic follows:
-if __name__ == '__main__':
-	# Create NeoPixel object with appropriate configuration.
-  strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
-	# Intialize the library (must be called once before other functions).
-  strip.begin()
+def strangerOriginal(strip):
+  """
+  Original patterned program
 
-  print ('Press Ctrl-C to quit.')
+  inputs: 
+    strip = color strip instance to action against
 
-
+  outputs:
+    <none>
+  """
   while True:
-
-    ##Initialize all LEDs
+    #Initialize all LEDs
     #for i in range(len(ALPHABET)):
     #  strip.setPixelColor(i+LIGHTSHIFT, Color(random.randint(0,255),random.randint(0,255),random.randint(0,255)))
     #  strip.show()
@@ -246,14 +268,16 @@ if __name__ == '__main__':
     runBlink(strip)
     time.sleep(1)
 
-    #create a list of jumbled ints
-    s = list(range(len(ALPHABET)))
-    random.shuffle(s)
+    turnOnLights(strip)
 
-    #turn on each light in a semi-random fasion
-    colorLen = len(COLORS)
-    #Initialize all LEDs
-    for i in range(len(ALPHABET)):
-      strip.setPixelColor(s[i]+LIGHTSHIFT, COLORS[s[i]%colorLen])
-      strip.show()
-      time.sleep(random.randint(10,80)/1000.0)
+# Main program logic follows:
+if __name__ == '__main__':
+	# Create NeoPixel object with appropriate configuration.
+  strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
+	# Intialize the library (must be called once before other functions).
+  strip.begin()
+
+  print ('Press Ctrl-C to quit.')
+
+  strangerOriginal(strip)
+
