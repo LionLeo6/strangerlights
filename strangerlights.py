@@ -270,6 +270,26 @@ def strangerOriginal(strip):
 
     turnOnLights(strip)
 
+def strangerReadWords(strip):
+  """
+  New program to read words from a prompt and blink them
+
+  inputs: 
+    strip = color strip instance to action against
+
+  outputs:
+    <none>
+  """
+  initLights(strip)
+
+  print ('Type words to blink')
+  while True:
+    word = raw_input('> ')
+    blinkWords(strip, word)
+    runBlink(strip)
+    time.sleep(1)
+    turnOnLights(strip)
+
 # Main program logic follows:
 if __name__ == '__main__':
 	# Create NeoPixel object with appropriate configuration.
@@ -279,5 +299,5 @@ if __name__ == '__main__':
 
   print ('Press Ctrl-C to quit.')
 
-  strangerOriginal(strip)
+  strangerReadWords(strip)
 
