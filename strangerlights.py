@@ -53,7 +53,7 @@ ALPHABET = '*******abcdefghijklm********zyxwvutsrqpon*********'  #alphabet that 
 LIGHTSHIFT = 0  #shift the lights down the strand to the other end 
 FLICKERLOOP = 3  #number of loops to flicker
 
-def initLights(strip):
+def initLights(strip, justLetters = False):
   """
   initializes the light strand colors 
 
@@ -65,17 +65,22 @@ def initLights(strip):
   """
   colorLen = len(COLORS)
   #Initialize all LEDs
-  for i in range(len(ALPHABET)):
-    strip.setPixelColor(i+LIGHTSHIFT, COLORS[i%colorLen])
+  if justLetters:
+    for i in range(len(ALPHABET)):
+      if justLetters and ALPHABET[i] != '*':
+        strip.setPixelColor(i+LIGHTSHIFT, COLORS[i%colorLen])
+  else:
+    for i in range(len(ALPHABET)):
+      strip.setPixelColor(i+LIGHTSHIFT, COLORS[i%colorLen])
+
   strip.show()
 
-def blinkWords(strip, word):
+def turnOffLights(strip):
   """
-  blinks a string of letters
+  turns off all the lights
 
   inputs: 
     strip = color strip instance to action against
-    word = word to blink
 
   outputs:
     <none>
@@ -89,6 +94,10 @@ def blinkWords(strip, word):
     strip.setPixelColor(s[led]+LIGHTSHIFT, OFF)
     strip.show()
     time.sleep(random.randint(10,80)/1000.0)
+
+def blinkWords(strip, word):
+
+  turnOffLights(strip)
 
   #quick delay
   time.sleep(1.75)
