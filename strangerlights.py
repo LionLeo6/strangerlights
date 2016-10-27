@@ -123,7 +123,7 @@ def blinkWords(strip, word):
   turnOffLights(strip)
 
   #quick delay
-  time.sleep(1.75)
+  time.sleep(1.25)
 
   #if letter in alphabet, turn on 
   #otherwise, stall
@@ -131,12 +131,12 @@ def blinkWords(strip, word):
     if character in ALPHABET:
       strip.setPixelColor(ALPHABET.index(character)+LIGHTSHIFT, COLORS[ALPHABET.index(character)])
       strip.show()
-      time.sleep(1)
+      time.sleep(.75)
       strip.setPixelColor(ALPHABET.index(character)+LIGHTSHIFT, OFF)
       strip.show()
-      time.sleep(.5)
+      time.sleep(.25)
     else:
-      time.sleep(.75)
+      time.sleep(.5)
 
 def flicker(strip, ledNo):
   """
